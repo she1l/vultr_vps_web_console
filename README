@@ -1,7 +1,3 @@
-vultr_vps_web_console
-
-vultr.com
-
 Example:
 ----------------------------------------------------------------------------------------------------------
 list_ip                              # List all the active reserved IPs on this account.
