@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>--- VPS ---</title>
+<link rel="icon" href="../static/favicon.ico">
+<script type="text/javascript" src="{{ url_for('static', filename='jquery.js') }}"></script>
+<script type=text/javascript>$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};</script>
+
+<script type="text/javascript">
+    $(function() {
+        $('#run').bind('click', function() {
+            $.getJSON($SCRIPT_ROOT + '/vps', {
+                post: $('textarea[name="post"]').val()
+            }, function(data) {
+                var json = JSON.stringify(data, null, 4);
+                var html = json.replace(/\[/g, '<br>').replace(/]/g, '<br>');
+                $("#result").empty();
+                $("#result").html(html);
+            });
+        return false;
+        });
+    });
+</script>
+
+</head>
+<body>
+<textarea name="post" form="demo" style="width: 730px; height: 230px; font-size: 18px; font-family: Consolas; color: #FFFFFF; background-color: #000000;"></textarea>
+<p style="white-space: pre; font-size: 14px;">
+Example:
+-------------------------------------------------------------------------------------------------------------------------
+list_ip                                                           # List all the active reserved IPs on this account.
+list_server                                                    # List all active or pending virtual machines on the current account.
+attach_ip 144.202.33.152 12956058           # Attach a reserved IP to an existing subscription.
+detach_ip 144.202.33.152 12956058          # Detach a reserved IP from an existing subscription.
+create_ip 39 v4                                           # Create a new reserved IP(ip_type v4).
+destroy_ip 144.202.33.152                         # Remove a reserved IP from your account.
+
+Multiline(split with comma):
+---------------------------------------
+list_ip,
+list_server
+
+attach_ip 144.202.33.152 12956058,
+attach_ip 149.28.96.180 12956058
+</p>
+<button id="run" value="run">run</button>
+<br>
+<p style="font-size: 18px; font-family: Consolas; color: #ff0000;">
+    OUTPUT:
+</p>
+<div id="result" style="font-size: 15px; font-family: Consolas; color: #0000FF;"></div>
+</body>
+</html>
+
