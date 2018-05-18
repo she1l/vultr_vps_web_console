@@ -1,0 +1,21 @@
+vultr_vps_web_console
+
+vultr.com
+
+Example:
+-------------------------------------------------------------------------------------------------------------------------
+list_ip                                    # List all the active reserved IPs on this account.
+list_server                                # List all active or pending virtual machines on the current account.
+attach_ip 144.202.33.152 12956058          # Attach a reserved IP to an existing subscription.
+detach_ip 144.202.33.152 12956058          # Detach a reserved IP from an existing subscription.
+create_ip 39 v4                            # Create a new reserved IP(ip_type v4).
+destroy_ip 144.202.33.152                  # Remove a reserved IP from your account.
+
+
+Multiline(split with comma):
+---------------------------------------
+list_ip,
+list_server
+
+attach_ip 144.202.33.152 12956058,
+attach_ip 149.28.96.180 12956058
